@@ -109,10 +109,32 @@ const checkIfWin = (board, row, col, val) => {
 };
 
 let count = 0;
+const toss = () => {
+	let randVal = Math.random();
+	console.log(randVal);
+	return randVal > 0.5 ? 2 : 1;
+}
+
+let isToss = prompt(`proceed for toss press y/n: `);
+if(isToss.toLowerCase() !== 'y') {
+	console.log('run the game again to play!');
+	return;
+}
+
+let firstMove = toss();
+console.log(`participant ${firstMove} won the toss. Game start ...\n`);
+
+let secondMove = firstMove === 1 ? 2 : 1;
 while (true && count != n * n) {
 	let val = count % 2;
-	val = val === 0 ? 2 : 1;
-	let col = prompt(`please enter the column participant ${val}: `);
+	val = val === 0 ? firstMove : secondMove;
+	let col = prompt(`please enter the column participant ${val}, press q to quit: `);
+	if(col.toLowerCase() === 'q') {
+		console.log(`participant ${val} quit! ...`);
+		console.log(`participant ${val === 1? 2: 1} won! ...`);
+		console.log('game over!');
+		return;
+	}
 	console.log(`you have entered col: ${col}`);
 	col = parseInt(col) - 1;
 	if ((!col && col !== 0) || col < 0 || col >= n) {
