@@ -1,3 +1,3 @@
 Steps:
 1. $ npm i
-2. $ node linegame.js
+2. $ node lineGame.js
